@@ -24,7 +24,7 @@ class Server {
   // application config
   public config(): void {
 
-    const MONGO_URI: string = 'mongodb://localhost/tes'; 
+    const MONGO_URI: string = 'mongodb://cesar:180292@ds117469.mlab.com:17469/cesar'; 
     mongoose.connect(MONGO_URI || process.env.MONGODB_URI);
 
     // express middleware
