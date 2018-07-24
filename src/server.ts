@@ -11,7 +11,6 @@ import PostRouter from './router/PostRouter';
 import UserRouter from './router/UserRouter';
 
 class Server {
-
   // set app to be of type express.Application
   public app: express.Application;
 
@@ -20,11 +19,11 @@ class Server {
     this.config();
     this.routes();
   }
-  
+
   // application config
   public config(): void {
-
-    const MONGO_URI: string = 'mongodb://cesar:180292@ds117469.mlab.com:17469/cesar'; 
+    const MONGO_URI: string =
+      'mongodb://cesar:180292@ds117469.mlab.com:17469/cesar';
     mongoose.connect(MONGO_URI || process.env.MONGODB_URI);
 
     // express middleware
@@ -38,13 +37,21 @@ class Server {
 
     // cors
     this.app.use((req, res, next) => {
-      res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials');
+      res.header('Access-Control-Allow-Origin', 'http://localhost:8100');
+      res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header(
+        'Access-Control-Allow-Methods',
+        'GET, POST, PUT, DELETE, OPTIONS'
+      );
+      // tslint:disable-next-line:max-line-length
+      res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials'
+      );
       res.header('Access-Control-Allow-Credentials', 'true');
       next();
     });
-    
   }
 
   // application routes
